@@ -81,6 +81,44 @@ Bu proje, Windows sistemlerde geliştirici ortamlarını optimize etmek ve yöne
 
 Bu uygulama sistem seviyesinde değişiklikler yapabildiğinden yönetici haklarıyla çalıştırılmalıdır. Kullanmadan önce verilerinizi yedeklemeniz önerilir.
 
+## Taşınan WSL Dosyası Çalışmıyorsa
+
+Eğer taşınan WSL dosyası çalışmıyorsa, aşağıdaki adımları takip edebilirsiniz:
+
+### 1) Mevcut WSL Dağıtımını Kapatın
+
+```powershell
+wsl --shutdown
+```
+
+### 2) Mevcut Dağıtımı Unregister Edin
+
+```powershell
+wsl --unregister Ubuntu  # veya hangi dağıtımı kullanıyorsanız
+```
+
+### 3a) VHDX Dosyasının Yeni Konumunu WSL'e Bildirin
+
+```powershell
+wsl --import-in-place Ubuntu D:\WSL\ext4.vhdx
+```
+
+### 3b) Bu Yöntem Çalışmazsa Alternatif Olarak
+
+### 4) Yeni Bir WSL Dağıtımı Oluşturun ve VHDX'in Konumunu Belirtin
+
+```powershell
+wsl --import Ubuntu D:\WSL D:\WSL\ext4.vhdx
+```
+
+### 5) Hala Hata Alıyorsanız, WSL'i Tamamen Sıfırlayıp Yeniden Kurabilirsiniz
+
+```powershell
+wsl --unregister Ubuntu
+wsl --shutdown
+wsl --install Ubuntu
+```
+
 ## İletişim ve Destek
 
 - Website: [https://hucrem.com](https://hucrem.com)
@@ -90,3 +128,4 @@ Bu uygulama sistem seviyesinde değişiklikler yapabildiğinden yönetici haklar
 ## Lisans
 
 Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakınız.
+
